@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proforma de Paisajismo IVERT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="app-header">
+      <div class="brand-block">
+        <img
+          class="brand-logo"
+          src="https://ivertecuador.com/assets/images/image03.svg?v=7d9db400"
+          alt="IVERT"
+        >
+        <div>
+          <p class="eyebrow">IVERT</p>
+          <h1>Proforma dinámica de paisajismo</h1>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="button button-secondary" id="previewPdfButton" type="button">Previsualizar PDF</button>
+        <button class="button button-primary" id="downloadPdfButton" type="button">Descargar PDF</button>
+      </div>
+    </header>
+
+    <section class="summary-band" aria-label="Resumen de valores">
+      <div class="summary-item">
+        <span>Subtotal Sin IVA</span>
+        <strong id="subtotalGeneral">$0.00</strong>
+      </div>
+    </section>
+
+    <div class="config-toolbar">
+      <button
+        class="button button-primary config-toggle-button"
+        id="configToggleButton"
+        type="button"
+        aria-controls="controlsPanel"
+        aria-expanded="false"
+      >
+        <span class="config-toggle-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5M9.4 12a2.6 2.6 0 1 0 5.2 0 2.6 2.6 0 0 0-5.2 0Z"/>
+          </svg>
+        </span>
+        <span class="config-toggle-label">Configurar Diseño</span>
+      </button>
+    </div>
+
+    <section class="layout is-config-collapsed" id="designLayout">
+      <aside class="controls-panel" id="controlsPanel" aria-label="Panel de configuración" hidden>
+        <div class="panel-header">
+          <h2>Configuración</h2>
+        </div>
+
+        <div id="controlsContainer" class="controls-stack"></div>
+      </aside>
+
+      <section class="visual-panel" aria-label="Visualización del diseño">
+        <div class="section-heading">
+          <div>
+            <h2>Diseño por puntos</h2>
+          </div>
+        </div>
+
+        <div class="grades-stack" id="gradesContainer"></div>
+      </section>
+    </section>
+
+    <section class="conditions-section">
+      <h2>Condiciones comerciales</h2>
+      <ul id="commercialConditions"></ul>
+    </section>
+  </main>
+
+  <div class="modal" id="pdfModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+      <div class="modal-header">
+        <h2 id="pdfModalTitle">Previsualización de PDF</h2>
+        <button class="icon-button" type="button" aria-label="Cerrar previsualización" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="pdfPreviewContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <template id="pdfTemplate">
+    <article class="pdf-document">
+      <header class="pdf-header">
+        <div class="pdf-brand-block">
+          <img
+            class="pdf-logo"
+            src="https://ivertecuador.com/assets/images/image03.svg?v=7d9db400"
+            alt="IVERT"
+          >
+          <p class="pdf-brand">IVERT</p>
+          <h2>Proforma de Paisajismo IVERT</h2>
+          <p id="pdfDate"></p>
+        </div>
+      </header>
+
+      <section>
+        <h3>Detalle de plantas</h3>
+        <div id="pdfPlantsSummary" class="pdf-table-wrap"></div>
+      </section>
+
+      <section>
+        <h3>Totales</h3>
+        <div id="pdfPriceSummary" class="pdf-table-wrap"></div>
+      </section>
+
+      <section>
+        <h3>Condiciones comerciales</h3>
+        <ul id="pdfConditions"></ul>
+      </section>
+
+      <section>
+        <h3>Representación visual resumida</h3>
+        <div id="pdfVisualSummary" class="pdf-visual-stack"></div>
+      </section>
+    </article>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
