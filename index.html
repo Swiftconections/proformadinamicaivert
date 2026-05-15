@@ -66,7 +66,7 @@
       <section class="visual-panel" aria-label="Visualización del diseño">
         <div class="section-heading">
           <div>
-            <h2>Diseño por puntos</h2>
+            <h2>Diseño de Jardines</h2>
           </div>
         </div>
 
@@ -96,15 +96,31 @@
   <template id="pdfTemplate">
     <article class="pdf-document">
       <header class="pdf-header">
-        <div class="pdf-brand-block">
-          <img
-            class="pdf-logo"
-            src="https://ivertecuador.com/assets/images/image03.svg?v=7d9db400"
-            alt="IVERT"
-          >
-          <p class="pdf-brand">IVERT</p>
-          <h2>Proforma de Paisajismo IVERT</h2>
-          <p id="pdfDate"></p>
+        <div class="pdf-letterhead-top">
+          <div class="pdf-brand-block">
+            <img
+              class="pdf-logo"
+              src="https://ivertecuador.com/assets/images/image03.svg?v=7d9db400"
+              alt="IVERT"
+            >
+            <p class="pdf-brand">IVERT</p>
+            <h2>Proforma de Paisajismo IVERT</h2>
+          </div>
+          <div class="pdf-date-block" aria-label="Fechas de la proforma">
+            <p>
+              <span>Fecha:</span>
+              <strong id="pdfDate"></strong>
+            </p>
+            <p>
+              <span>Válida hasta:</span>
+              <strong id="pdfValidUntil"></strong>
+            </p>
+          </div>
+        </div>
+        <div class="pdf-office-recipient">
+          <span>Señores</span>
+          <strong id="pdfRecipient"></strong>
+          <span>Presente.-</span>
         </div>
       </header>
 
@@ -121,6 +137,7 @@
       <section>
         <h3>Condiciones comerciales</h3>
         <ul id="pdfConditions"></ul>
+        <div id="pdfGrassWarnings" class="pdf-warning-notes" hidden></div>
       </section>
 
       <section>

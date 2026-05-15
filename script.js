@@ -18,31 +18,50 @@ const COLORES = {
   espigaRoja: "#8f2f35",
   lavanda: "#6f3fb5",
   margaritaMorada: "#c9afe8",
-  salviaBicolor: "#f7f4ea",
+  salviaMorada: "#c7a6f2",
+  salviaBicolor: "#ffffff",
   quinceaneraRastrera: "#e98cac",
   vinca: "#f2d45c",
   vacio: "#dde4df"
 };
 
+const IMAGENES_PLANTAS = {
+  lavanda: "https://ivertecuador.com/assets/images/image06.png?v=9a3e4f9c",
+  margaritaMorada: "https://ivertecuador.com/assets/images/image07.png?v=9a3e4f9c",
+  agapantoAzul: "https://ivertecuador.com/assets/images/image11.png?v=9a3e4f9c",
+  escancelRojo: "https://ivertecuador.com/assets/images/image12.png?v=9a3e4f9c",
+  espigaRoja: "https://ivertecuador.com/assets/images/image13.png?v=9a3e4f9c",
+  espigaVerde: "https://ivertecuador.com/assets/images/image14.png?v=9a3e4f9c",
+  salviaMorada: "https://ivertecuador.com/assets/images/image15.png?v=9a3e4f9c",
+  salviaBicolor: "https://ivertecuador.com/assets/images/image16.png?v=9a3e4f9c",
+  quinceaneraRastrera: "https://ivertecuador.com/assets/images/image17.png?v=9a3e4f9c",
+  vinca: "https://ivertecuador.com/assets/images/image05.png?v=9a3e4f9c"
+};
+
 const CONDICIONES_COMERCIALES = [
   "Anticipo del 50%.",
-  "El otro 50% puede trabajarse con crédito de hasta 30 días.",
+  "El otro 50% con crédito de hasta 30 días.",
   "Una vez confirmado el anticipo, necesitamos 3 días para gestionar compra y traslado de plantas, tierra y materiales.",
-  "El inicio del proyecto sería en aproximadamente 4 días hábiles.",
+  "El inicio del proyecto sería en 4 días hábiles, posterior al anticipo.",
   "El tiempo estimado para realizar el trabajo es de 15 días hábiles."
 ];
 
+const NOTA_CESPED_CONTINUO = "Hasta los 6 metros, el césped funcionará perfecto: se verá ordenado, agradable y equilibrado. Al superar esa extensión, el mantenimiento puede ser más rápido, pero visualmente puede sentirse demasiado uniforme sin otros elementos que acompañen el diseño.";
+const DETALLE_TRABAJO_PDF = "El trabajo incluye el rediseño paisajístico del jardín, preparación del suelo con tierra abonada y abono, distribución estética de plantas, retiro de desechos y limpieza final del área.";
+const DESTINATARIO_PDF = "Sres. Hanaska";
+
 const PLANTAS = {
   cesped: { nombre: "Césped", slug: "cesped", color: COLORES.cesped },
-  agapantoAzul: { nombre: "Agapanto azul", slug: "agapanto-azul", color: COLORES.agapantoAzul },
-  escancelRojo: { nombre: "Escancel rojo", slug: "escancel-rojo", color: COLORES.escancelRojo },
-  espigaVerde: { nombre: "Espiga Verde", slug: "espiga-verde", color: COLORES.espigaVerde },
-  espigaRoja: { nombre: "Espiga Roja", slug: "espiga-roja", color: COLORES.espigaRoja },
-  lavanda: { nombre: "Lavanda", slug: "lavanda", color: COLORES.lavanda },
-  margaritaMorada: { nombre: "Margarita morada", slug: "margarita-morada", color: COLORES.margaritaMorada },
-  salviaBicolor: { nombre: "Salvia bicolor", slug: "salvia-bicolor", color: COLORES.salviaBicolor },
-  quinceaneraRastrera: { nombre: "Quinceañera rastrera", slug: "quinceanera-rastrera", color: COLORES.quinceaneraRastrera },
-  vinca: { nombre: "Vinca", slug: "vinca", color: COLORES.vinca },
+  agapantoAzul: { nombre: "Agapanto azul", slug: "agapanto-azul", color: COLORES.agapantoAzul, imagen: IMAGENES_PLANTAS.agapantoAzul },
+  escancelRojo: { nombre: "Escancel rojo", slug: "escancel-rojo", color: COLORES.escancelRojo, imagen: IMAGENES_PLANTAS.escancelRojo },
+  espigaVerde: { nombre: "Espiga Verde", slug: "espiga-verde", color: COLORES.espigaVerde, imagen: IMAGENES_PLANTAS.espigaVerde },
+  espigaRoja: { nombre: "Espiga Roja", slug: "espiga-roja", color: COLORES.espigaRoja, imagen: IMAGENES_PLANTAS.espigaRoja },
+  lavanda: { nombre: "Lavanda", slug: "lavanda", color: COLORES.lavanda, imagen: IMAGENES_PLANTAS.lavanda },
+  margaritaMorada: { nombre: "Margarita morada", slug: "margarita-morada", color: COLORES.margaritaMorada, imagen: IMAGENES_PLANTAS.margaritaMorada },
+  salviaMorada: { nombre: "Salvia Morada", slug: "salvia-morada", color: COLORES.salviaMorada, imagen: IMAGENES_PLANTAS.salviaMorada },
+  salviaBicolor: { nombre: "Salvia bicolor", slug: "salvia-bicolor", color: COLORES.salviaBicolor, imagen: IMAGENES_PLANTAS.salviaBicolor },
+  quinceaneraRastrera: { nombre: "Quinceañera rastrera", slug: "quinceanera-rastrera", color: COLORES.quinceaneraRastrera, imagen: IMAGENES_PLANTAS.quinceaneraRastrera },
+  vinca: { nombre: "Vinca", slug: "vinca", color: COLORES.vinca, imagen: IMAGENES_PLANTAS.vinca },
   vacio: { nombre: "Base sin asignar", slug: "vacio", color: COLORES.vacio }
 };
 
@@ -98,7 +117,7 @@ const gradas = [
     tieneCesped: false,
     patronActivo: "onda-rojo-azul",
     filaVinca: "G",
-    plantas: ["Agapanto azul", "Escancel rojo", "Vinca"],
+    plantas: ["Escancel rojo", "Margarita morada", "Agapanto azul", "Vinca"],
     puntos: []
   },
   {
@@ -211,7 +230,7 @@ function crearGrada(grada) {
 
   const designNote = document.createElement("div");
   designNote.className = "grade-design-note";
-  designNote.textContent = "Plantas y Diseños Personalizables.";
+  
 
   const visualActions = document.createElement("div");
   visualActions.className = "grade-visual-actions";
@@ -224,6 +243,19 @@ function crearGrada(grada) {
     invertButton.dataset.invertColors = grada.id;
     invertButton.setAttribute("aria-pressed", "false");
     visualActions.appendChild(invertButton);
+
+    const warning = document.createElement("div");
+    warning.className = "grass-warning";
+    warning.id = `${grada.id}-grass-warning`;
+    warning.hidden = true;
+    warning.innerHTML = `
+      <span class="grass-warning-button">
+        <span aria-hidden="true">!</span>
+        Advertencia
+      </span>
+      <div class="grass-warning-note" id="${grada.id}-grass-warning-note" role="note"></div>
+    `;
+    visualActions.appendChild(warning);
   }
 
   const gridWrap = document.createElement("div");
@@ -273,6 +305,14 @@ function crearGrada(grada) {
     scroll.appendChild(visualActions);
   }
   scroll.appendChild(gridWrap);
+
+  const plantGallery = document.createElement("div");
+  plantGallery.className = "plant-photo-gallery";
+  plantGallery.id = `${grada.id}-plant-gallery`;
+  plantGallery.setAttribute("aria-label", `Galería de plantas de ${grada.nombre}`);
+  plantGallery.hidden = true;
+  scroll.appendChild(plantGallery);
+
   gradeView.appendChild(header);
   gradeView.appendChild(scroll);
   elementos.gradesContainer.appendChild(gradeView);
@@ -356,6 +396,7 @@ function aplicarPatronOnda(grada, patron) {
   });
 
   aplicarFilaVinca(grada);
+  actualizarGaleriaPlantas(grada);
   marcarBotonActivo(grada.id, patron);
   actualizarPrecios();
 }
@@ -399,6 +440,9 @@ function aplicarSegmentosCesped(grada) {
 
   aplicarFilaVinca(grada);
   actualizarEtiquetasCesped(grada);
+  actualizarAdvertenciaCesped(grada);
+  actualizarLeyendaPatronPlantas(grada);
+  actualizarGaleriaPlantas(grada);
   actualizarPrecios();
 }
 
@@ -488,17 +532,17 @@ function crearDocumentoPdf() {
   const template = document.getElementById("pdfTemplate");
   const documento = template.content.firstElementChild.cloneNode(true);
   const resumen = generarResumen();
+  const fechaEmision = new Date();
 
-  documento.querySelector("#pdfDate").textContent = `Fecha: ${new Date().toLocaleDateString("es-EC", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  })}`;
+  documento.querySelector("#pdfRecipient").textContent = DESTINATARIO_PDF;
+  documento.querySelector("#pdfDate").textContent = formatearFechaLarga(fechaEmision);
+  documento.querySelector("#pdfValidUntil").textContent = formatearFechaLarga(obtenerFechaValidezCotizacion(fechaEmision));
 
   documento.querySelector("#pdfPlantsSummary").innerHTML = crearTablaPlantasPdf(resumen);
   documento.querySelector("#pdfPriceSummary").innerHTML = crearTablaTotalesPdf(resumen);
   documento.querySelector("#pdfVisualSummary").innerHTML = crearVisualResumenPdf();
   documento.querySelector("#pdfConditions").innerHTML = crearCondicionesPdf(resumen);
+  actualizarAdvertenciasCespedPdf(documento);
 
   return documento;
 }
@@ -507,20 +551,26 @@ function crearControles() {
   gradas.forEach((grada) => {
     const panel = document.createElement("section");
     panel.className = "grade-controls";
+    panel.dataset.accordion = grada.id;
+    const contenidoId = `${grada.id}-controls-content`;
 
     if (grada.id === "grada-3") {
       panel.innerHTML = `
-        <h3>${grada.nombre}</h3>
-        <p class="control-note">Patrones visuales para agapanto azul y escancel rojo.</p>
-        <div class="segmented-buttons" data-grade-pattern="${grada.id}">
-          <button class="choice-button" type="button" data-pattern="onda-rojo-azul">Ondas rojo / azul</button>
-          <button class="choice-button" type="button" data-pattern="onda-azul-rojo">Ondas azul / rojo</button>
+        ${crearBotonAcordeonGrada(grada, contenidoId)}
+        <div class="grade-controls-content" id="${contenidoId}" hidden>
+          <p class="control-note">${crearTextoPlantasGrada(grada)}</p>
+          <div class="segmented-buttons" data-grade-pattern="${grada.id}">
+            <button class="choice-button" type="button" data-pattern="onda-rojo-azul">Ondas rojo / azul</button>
+            <button class="choice-button" type="button" data-pattern="onda-azul-rojo">Ondas azul / rojo</button>
+          </div>
         </div>
       `;
     } else {
       panel.innerHTML = `
-        <h3>${grada.nombre}</h3>
-        <div class="extra-garden-control" id="${grada.id}-garden-control"></div>
+        ${crearBotonAcordeonGrada(grada, contenidoId)}
+        <div class="grade-controls-content" id="${contenidoId}" hidden>
+          <div class="extra-garden-control" id="${grada.id}-garden-control"></div>
+        </div>
       `;
     }
 
@@ -531,6 +581,25 @@ function crearControles() {
   conectarEventosControles();
 }
 
+function crearBotonAcordeonGrada(grada, contenidoId) {
+  return `
+    <button
+      class="accordion-trigger"
+      type="button"
+      data-accordion-trigger="${grada.id}"
+      aria-expanded="false"
+      aria-controls="${contenidoId}"
+    >
+      <span>${grada.nombre}</span>
+      <span class="accordion-icon" aria-hidden="true"></span>
+    </button>
+  `;
+}
+
+function crearTextoPlantasGrada(grada) {
+  return `Plantas actuales: ${grada.plantas.join(", ")}.`;
+}
+
 function crearControlesJardinAdicional() {
   gradas.filter((grada) => grada.tieneCesped).forEach((grada) => {
     const contenedor = document.getElementById(`${grada.id}-garden-control`);
@@ -539,19 +608,17 @@ function crearControlesJardinAdicional() {
     contenedor.innerHTML = `
       <label for="${grada.id}-plant-pattern">Diseño de plantas</label>
       <select id="${grada.id}-plant-pattern" data-plant-pattern data-grade="${grada.id}">
-        ${crearOpcionesPatronPlantas(grada.patronPlantas)}
+        ${crearOpcionesPatronPlantas()}
       </select>
-      <div class="plant-choice-legend" id="${grada.id}-plant-legend">
-        ${crearLeyendaPatronPlantas(grada.patronPlantas)}
-      </div>
-      <label for="${grada.id}-extra-garden">Metros de jardín adicional</label>
+      <div class="plant-choice-legend" id="${grada.id}-plant-legend"></div>
+      <label for="${grada.id}-extra-garden">Metros de diseño adicional</label>
       <div class="garden-stepper">
         <button
           class="garden-step-button"
           type="button"
           data-garden-step="-1"
           data-grade="${grada.id}"
-          aria-label="Disminuir metros de jardín adicional"
+          aria-label="Disminuir metros de diseño adicional"
         >-</button>
         <input
           id="${grada.id}-extra-garden"
@@ -568,7 +635,7 @@ function crearControlesJardinAdicional() {
           type="button"
           data-garden-step="1"
           data-grade="${grada.id}"
-          aria-label="Aumentar metros de jardín adicional"
+          aria-label="Aumentar metros de diseño adicional"
         >+</button>
       </div>
       <small id="${grada.id}-garden-help">Césped disponible: ${formatoNumero(maximo)} m.</small>
@@ -578,6 +645,12 @@ function crearControlesJardinAdicional() {
 
 function conectarEventosControles() {
   elementos.controlsContainer.addEventListener("click", (event) => {
+    const botonAcordeon = event.target.closest("[data-accordion-trigger]");
+    if (botonAcordeon) {
+      alternarAcordeonGrada(botonAcordeon);
+      return;
+    }
+
     const botonJardin = event.target.closest("[data-garden-step]");
     if (botonJardin) {
       manejarClickPasoJardin(botonJardin);
@@ -594,6 +667,18 @@ function conectarEventosControles() {
   elementos.controlsContainer.addEventListener("input", manejarCambioJardinAdicional);
   elementos.controlsContainer.addEventListener("change", manejarCambioJardinAdicional);
   elementos.controlsContainer.addEventListener("change", manejarCambioPatronPlantas);
+}
+
+function alternarAcordeonGrada(boton) {
+  const estaAbierto = boton.getAttribute("aria-expanded") === "true";
+  const siguienteEstado = !estaAbierto;
+  const contenido = document.getElementById(boton.getAttribute("aria-controls"));
+
+  boton.setAttribute("aria-expanded", String(siguienteEstado));
+
+  if (contenido) {
+    contenido.hidden = !siguienteEstado;
+  }
 }
 
 function conectarEventosVisuales() {
@@ -621,10 +706,10 @@ function actualizarBotonInvertirColor(grada) {
 function manejarCambioPatronPlantas(event) {
   const select = event.target.closest("[data-plant-pattern]");
   if (!select) return;
+  if (!select.value) return;
 
   const grada = gradas.find((item) => item.id === select.dataset.grade);
   grada.patronPlantas = select.value;
-  actualizarLeyendaPatronPlantas(grada);
   aplicarSegmentosCesped(grada);
 }
 
@@ -797,7 +882,10 @@ function debeUsarBloqueMorado(patronConfig, grada, segmento) {
 }
 
 function obtenerPlantaMoradaPorFila(punto) {
-  return punto.filaNumero <= 4 ? PLANTAS.lavanda : PLANTAS.margaritaMorada;
+  if (punto.filaNumero <= 2) return PLANTAS.lavanda;
+  if (punto.filaNumero <= 4) return PLANTAS.salviaMorada;
+
+  return PLANTAS.margaritaMorada;
 }
 
 function obtenerPlantaOndaPorFila(punto, patronConfig, grada) {
@@ -824,18 +912,20 @@ function obtenerOrigenPatronPlantas(segmento, esJardinAdicional, columnasJardinA
   return segmento.inicioColumna;
 }
 
-function crearOpcionesPatronPlantas(valorActivo = "opcion-1") {
-  return Object.entries(PATRONES_PLANTAS).map(([valor, opcion]) => `
-    <option value="${valor}" ${valor === valorActivo ? "selected" : ""}>${opcion.nombre}</option>
+function crearOpcionesPatronPlantas() {
+  const opciones = Object.entries(PATRONES_PLANTAS).map(([valor, opcion]) => `
+    <option value="${valor}">${opcion.nombre}</option>
   `).join("");
+
+  return `<option value="" selected disabled>Selecciona una opción</option>${opciones}`;
 }
 
 function obtenerConfigPatronPlantas(valor = "opcion-1") {
   return PATRONES_PLANTAS[valor] || PATRONES_PLANTAS["opcion-1"];
 }
 
-function crearLeyendaPatronPlantas(valor = "opcion-1") {
-  return obtenerConfigPatronPlantas(valor).plantas.map((planta) => `
+function crearLeyendaPatronPlantas(grada) {
+  return obtenerPlantasVisiblesGrada(grada).map((planta) => `
     <span class="plant-choice-item">
       <span class="plant-choice-swatch" style="background:${planta.color}"></span>
       ${planta.nombre}
@@ -847,7 +937,56 @@ function actualizarLeyendaPatronPlantas(grada) {
   const contenedor = document.getElementById(`${grada.id}-plant-legend`);
   if (!contenedor) return;
 
-  contenedor.innerHTML = crearLeyendaPatronPlantas(grada.patronPlantas);
+  contenedor.innerHTML = crearLeyendaPatronPlantas(grada);
+}
+
+function actualizarGaleriaPlantas(grada) {
+  const contenedor = document.getElementById(`${grada.id}-plant-gallery`);
+  if (!contenedor) return;
+
+  const plantas = obtenerPlantasVisiblesGrada(grada).filter((planta) => planta.imagen);
+  contenedor.innerHTML = "";
+  contenedor.hidden = plantas.length === 0;
+
+  plantas.forEach((planta) => {
+    const card = document.createElement("figure");
+    card.className = "plant-photo-card";
+    card.style.setProperty("--plant-color", planta.color);
+
+    const image = document.createElement("img");
+    image.src = planta.imagen;
+    image.alt = planta.nombre;
+    image.loading = "lazy";
+
+    const caption = document.createElement("figcaption");
+    caption.textContent = planta.nombre;
+
+    card.appendChild(image);
+    card.appendChild(caption);
+    contenedor.appendChild(card);
+  });
+}
+
+function obtenerPlantasVisiblesGrada(grada, opciones = {}) {
+  const plantas = [];
+
+  grada.puntos.forEach((punto) => {
+    if (punto.tipo !== "planta") return;
+    if (opciones.soloBase && punto.esJardinAdicional) return;
+    if (opciones.soloJardinAdicional && !punto.esJardinAdicional) return;
+
+    const planta = obtenerPlantaPorNombre(punto.planta);
+    if (!planta) return;
+    if (plantas.some((item) => item.slug === planta.slug)) return;
+
+    plantas.push(planta);
+  });
+
+  return plantas;
+}
+
+function obtenerPlantaPorNombre(nombre) {
+  return Object.values(PLANTAS).find((planta) => planta.nombre === nombre);
 }
 
 function calcularBloquesGrada(grada) {
@@ -1079,30 +1218,100 @@ function obtenerRangosCespedActuales(grada) {
   return rangos;
 }
 
+function obtenerRangosCespedConAdvertencia(grada) {
+  if (!grada.tieneCesped) return [];
+
+  return obtenerRangosCespedActuales(grada)
+    .map((rango) => ({
+      ...rango,
+      metros: rango.columnas / CONFIG.columnasPorMetro
+    }))
+    .filter((rango) => rango.metros > 6);
+}
+
+function tieneAdvertenciaCesped(grada) {
+  return obtenerRangosCespedConAdvertencia(grada).length > 0;
+}
+
+function actualizarAdvertenciaCesped(grada) {
+  const contenedor = document.getElementById(`${grada.id}-grass-warning`);
+  const nota = document.getElementById(`${grada.id}-grass-warning-note`);
+  if (!contenedor || !nota) return;
+
+  const rangos = obtenerRangosCespedConAdvertencia(grada);
+  const debeMostrar = rangos.length > 0;
+  contenedor.hidden = !debeMostrar;
+
+  if (!debeMostrar) {
+    nota.innerHTML = "";
+    return;
+  }
+
+  const metros = rangos.map((rango) => `${formatoNumero(rango.metros)} m`).join(", ");
+  nota.innerHTML = `
+    <strong>Nota sobre césped continuo</strong>
+    <p>${NOTA_CESPED_CONTINUO}</p>
+    <small>Tramos actuales mayores a 6 m: ${metros}.</small>
+  `;
+}
+
 function actualizarTextoControlJardin(grada) {
   const ayuda = document.getElementById(`${grada.id}-garden-help`);
   if (!ayuda) return;
 
   const cespedActual = obtenerMetrosCespedBase(grada) - normalizarMetrosJardinAdicional(grada);
-  ayuda.textContent = `Césped restante: ${formatoNumero(cespedActual)} m. Jardín adicional: ${formatoNumero(grada.metrosJardinAdicional)} m.`;
+  ayuda.textContent = `Césped restante: ${formatoNumero(cespedActual)} m. Diseño adicional: ${formatoNumero(grada.metrosJardinAdicional)} m.`;
 }
 
 function crearTablaPlantasPdf(resumen) {
-  const subtotal = resumen.subtotalGeneral;
+  const gradasConJardinAdicional = gradas.filter((grada) => grada.tieneCesped && normalizarMetrosJardinAdicional(grada) > 0);
+  const totalFilasDetalle = gradas.length + gradasConJardinAdicional.length;
+  const filasBase = gradas.map((grada, indice) => {
+    const celdaDetalles = indice === 0
+      ? `<td rowspan="${totalFilasDetalle}" class="pdf-details-cell">${DETALLE_TRABAJO_PDF}</td>`
+      : "";
+    const celdaPrecio = indice === 0
+      ? `<td rowspan="${gradas.length}" class="pdf-price-total-cell">${formatoMoneda(resumen.subtotalBase)}</td>`
+      : "";
+
+    return `
+      <tr>
+        <td>${obtenerNombresPlantasPorGradaPdf(grada, { soloBase: true })}</td>
+        ${celdaDetalles}
+        <td>${obtenerNombreJardinPdf(grada)}</td>
+        <td>${obtenerOpcionSeleccionadaPdf(grada)}</td>
+        ${celdaPrecio}
+      </tr>
+    `;
+  }).join("");
+  const filasJardinAdicional = gradasConJardinAdicional
+    .map((grada) => {
+      const metrosAdicionales = normalizarMetrosJardinAdicional(grada);
+
+      return `
+        <tr class="pdf-extra-garden-row">
+          <td>${obtenerNombresPlantasPorGradaPdf(grada, { soloJardinAdicional: true })}</td>
+          <td>${obtenerNombreJardinPdf(grada)} - Diseño adicional</td>
+          <td>${obtenerOpcionSeleccionadaPdf(grada)}</td>
+          <td>${formatoMoneda(metrosAdicionales * CONFIG.precioMetroJardinAdicional)}</td>
+        </tr>
+      `;
+    }).join("");
 
   return `
     <table class="pdf-table">
       <thead>
         <tr>
           <th>Plantas</th>
+          <th>Detalles</th>
+          <th>Jardin</th>
+          <th>Opción seleccionada</th>
           <th>Precio Final</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>${obtenerNombresPlantasPdf()}</td>
-          <td>${formatoMoneda(subtotal)}</td>
-        </tr>
+        ${filasBase}
+        ${filasJardinAdicional}
       </tbody>
     </table>
   `;
@@ -1149,16 +1358,70 @@ function obtenerNombresPlantasPdf() {
   return nombres.join(", ");
 }
 
+function obtenerNombresPlantasPorGradaPdf(grada, opciones = {}) {
+  return obtenerPlantasVisiblesGrada(grada, opciones)
+    .map((planta) => planta.nombre)
+    .join(", ");
+}
+
+function obtenerNombreJardinPdf(grada) {
+  const nombres = {
+    "grada-3": "Superior",
+    "grada-2": "Intermedia",
+    "grada-1": "Inferior"
+  };
+
+  return nombres[grada.id] || grada.nombre;
+}
+
+function obtenerOpcionSeleccionadaPdf(grada) {
+  if (grada.id === "grada-3") {
+    return grada.patronActivo === "onda-rojo-azul" ? "Ondas rojo / azul" : "Ondas azul / rojo";
+  }
+
+  return obtenerConfigPatronPlantas(grada.patronPlantas).nombre;
+}
+
 function crearCondicionesPdf(resumen) {
   const condiciones = [
     `Anticipo requerido: 50% (${formatoMoneda(resumen.anticipoValor)}).`,
     `Saldo restante: 50% (${formatoMoneda(resumen.saldoValor)}), con crédito de hasta 30 días.`,
     "Una vez confirmado el anticipo, necesitamos 3 días para gestionar compra y traslado de plantas, tierra y materiales.",
-    "El inicio del proyecto sería en aproximadamente 4 días hábiles.",
+    "El inicio del proyecto sería en 4 días hábiles posterior al anticipo.",
     "El tiempo estimado para realizar el trabajo es de 15 días hábiles."
   ];
 
   return condiciones.map((condicion) => `<li>${condicion}</li>`).join("");
+}
+
+function actualizarAdvertenciasCespedPdf(documento) {
+  const contenedor = documento.querySelector("#pdfGrassWarnings");
+  if (!contenedor) return;
+
+  const advertencias = gradas
+    .filter((grada) => grada.tieneCesped)
+    .map((grada) => ({
+      grada,
+      rangos: obtenerRangosCespedConAdvertencia(grada)
+    }))
+    .filter((item) => item.rangos.length > 0);
+
+  contenedor.hidden = advertencias.length === 0;
+  if (advertencias.length === 0) {
+    contenedor.innerHTML = "";
+    return;
+  }
+
+  const detalle = advertencias.map((item) => {
+    const metros = item.rangos.map((rango) => `${formatoNumero(rango.metros)} m`).join(", ");
+    return `<li>${item.grada.nombre}: ${metros} continuos de césped.</li>`;
+  }).join("");
+
+  contenedor.innerHTML = `
+    <strong>Nota sobre césped continuo</strong>
+    <p>${NOTA_CESPED_CONTINUO}</p>
+    <ul>${detalle}</ul>
+  `;
 }
 
 function crearVisualResumenPdf() {
@@ -1202,7 +1465,7 @@ function obtenerSegmentosVisuales(grada) {
     const rango = obtenerRangosSegmentos(grada).find((item) => columna >= item.inicioColumna && columna <= item.finColumna);
     const esCespedBase = rango ? grada.segmentosCespedActivos.has(rango.indice) : false;
     const esJardinAdicional = esCespedBase && columnasJardinAdicional.has(columna);
-    const nombre = esCespedBase && !esJardinAdicional ? "Césped" : esJardinAdicional ? "Jardín adicional" : "Jardín/plantas";
+    const nombre = esCespedBase && !esJardinAdicional ? "Césped" : esJardinAdicional ? "Diseño adicional" : "Jardín/plantas";
     const color = esCespedBase && !esJardinAdicional ? COLORES.cesped : esJardinAdicional ? COLORES.vinca : COLORES.lavanda;
 
     if (!segmentoActual || segmentoActual.nombre !== nombre) {
@@ -1260,4 +1523,18 @@ function formatoNumero(valor) {
 
 function obtenerFechaArchivo() {
   return new Date().toISOString().slice(0, 10);
+}
+
+function formatearFechaLarga(fecha) {
+  return fecha.toLocaleDateString("es-EC", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
+
+function obtenerFechaValidezCotizacion(fechaBase) {
+  const fechaValidez = new Date(fechaBase);
+  fechaValidez.setMonth(fechaValidez.getMonth() + 1);
+  return fechaValidez;
 }
